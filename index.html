@@ -20,18 +20,18 @@
                 </h1>
             </div>
             <ul id="top-menu">
-                <li>
-                    <div id="home-menubutton" class="Menu-Button">
+                <li id="home-menubutton">
+                    <div  class="Menu-Button">
                     Home
                     </div>
                 </li>
-                <li>
-                    <div id="employee-entry-menubutton" class="Menu-Button">
+                <li id="employee-entry-menubutton">
+                    <div  class="Menu-Button">
                     Employee Entry Form
                     </div>
                 </li>
-                <li>
-                    <div id="labor-expense-menubutton" class="Menu-Button">
+                <li id="labor-expense-menubutton">
+                    <div class="Menu-Button">
                         Labor Expenses
                     </div>
                 </li>
@@ -49,7 +49,7 @@
         <div id="employee-form">
             <table>
                 <tr>
-                    <th>Employee Entry Form</th>
+                    <th colspan="2">Employee Entry Form</th>
                 </tr>
                 <tr>
                     <td>First Name:</td>
@@ -62,7 +62,7 @@
                 <tr>
                     <td>ID Number Name:</td>
                     <td><input type="number" id="id-number" tabindex="3"></td>
-                    <td><button id="generate-random-id">Generate Random ID</button></td>
+                    <td id="generate-random-id-td"><button id="generate-random-id">Generate Random ID</button></td>
                 </tr>
                 <tr>
                     <td>Job Title:</td>
@@ -79,25 +79,26 @@
         <br>
         <div id="labor-expense-information">
                 <div id="monthly-expense-information">
-                        <table class="gross-expense">
-                            <tr>
-                                <th>Gross Monthly Expense: </th>
-                            </tr>
-                            <tr>
-                                <td id="monthly-expense">$0</td>     
-                             </tr>
-                        </table>
-                    </div>  
-                    <div id="annual-expense-information">
-                        <table class="gross-expense">
-                            <tr>
-                                <th>Gross Annual Expense: </th>
-                            </tr>
-                            <tr>
-                                <td id="annual-expense">$0</td>     
-                            </tr>
-                        </table>
-                    </div>
+                    <table class="gross-expense">
+                        <tr>
+                            <th>Gross Monthly Expense: </th>
+                        </tr>
+                        <tr>
+                            <td id="monthly-expense">$0</td>     
+                        </tr>
+                    </table>
+                </div>  
+                <div id="annual-expense-information">
+                    <table class="gross-expense">
+                        <tr>
+                            <th>Gross Annual Expense: </th>
+                        </tr>
+                        <tr>
+                            <td id="annual-expense">$0</td>     
+                        </tr>
+                    </table>
+                </div>
+                <button id=add-example-employees>Add Example Employees</button>
             <table id = "employee-information-table">
                 <tr id="employee-information-table-header">
                     <th>First Name</th>
@@ -119,7 +120,8 @@
     </main>
     <footer>
         <ul id='bottom-menu'>
-            <li class="Bottom-Menu-Button Menu-Button">
+            <li></li>
+            <!-- <li class="Bottom-Menu-Button Menu-Button">
                 <div  >
                     Help     
                 </div>
@@ -143,7 +145,7 @@
                 <div>
                 Contact Us
                 </div>
-            </li>
+            </li> -->
         </ul>
         <p id="created-by">Created by Brandon Yapel</p>
 

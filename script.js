@@ -1,16 +1,19 @@
 console.log('js');
 
-$(document).ready(readyNow);
 
+$(document).ready(readyNow);
+$(document).ready(homeButton);
 function readyNow () {
     console.log('JQuery has been loaded')
-    homeButton()
     //event listeners
     $("#submit-form").on('click',submitForm);
     $(".delete-employee").on('click',deleteEmployee);
     $("#home-menubutton").on('click',homeButton);
-    $("#employee-entry-menubutton").on('click',employeeEntryFormButton)
-    $("#labor-expense-menubutton").on('click',laborExpenseButton)
+    $("#employee-entry-menubutton").on('click',employeeEntryFormButton);
+    $("#labor-expense-menubutton").on('click',laborExpenseButton);
+    $("#add-example-employees").on('click',addExampleEmployees );
+    $("#generate-random-id").on('click',generateRandomID);
+    $("#clear-form").on('click',clearForm);
 }//end readyNow
  
 
@@ -56,10 +59,63 @@ var annualSalary;
 var grossMonthlyExpense=0;
 var grossAnnualExpense=0;
 
+//example employees
+var Trump = new employee('Donald','Trump',1,"President",400000);
+var Pence = new employee('Mike','Pence',2,"Vice President",230700);
+var Ryan = new employee('Paul','Ryan',3,"Speaker of the House",223500);
+var Hatch = new employee('Orrin','Hatch',4,"President Pro Tempore",193400);
+var Tillerson = new employee ('Rex','Tillerson',5,"Secretary of State",199700);
+var Mnuchin = new employee('Steven','Mnuchin',6,"Secretary of Treasury",199700);
+var Mattis = new employee('James','Mattis',7,"Secretary of Defense",199700);
+var Sessions = new employee('Jeff','Sessions',8,"Attorney General",199700);
+var Zinke = new employee('Ryan','Zinke',9,"Secretary of Interior",199700);
+var Perdue = new employee('Sonny','Perdue',10,"Secretary of Agriculture",199700);
+var Wilbur = new employee('Wilbur', 'Ross',11,"Secretary of Commerce",199700);
+var Acosta = new employee('Alexander','Acosta',12,"Secretary of Labor",199700);
+var Price = new employee('Tom','Price',13,"Secretary of Health and Human Services",199700);
+var Carson = new employee('Ben','Carson',14,"Secretary of Housing and Urban Development",199700);
+var Chao = new employee('Elaine','Chao',15,"Secretary of Transportation", 199700);
+var Perry = new employee('Rick','Perry',16,"Secretary of Energy", 199700);
+var DeVos = new employee('Betsy','DeVos',17,"Secretary of Education",199700);
+var Shulkin = new employee('David','Shulkin', 18,"Secretary of Veteran Affairs",199700);
+var Kelly = new employee('John','Kelly',19,"Secretary of Homeland Security",199700);
+
+
+var exampleEmployees = [Trump,Pence,Ryan,Hatch,Tillerson,Mnuchin,Mattis,Sessions,Zinke,Perdue,Wilbur,Acosta,Price,Carson,Chao,Perry,DeVos,Shulkin,Kelly];
+
+//add exampleEmployees to employees array
+function addExampleEmployees () {
+    for (let exampleIndex = 0; exampleIndex < exampleEmployees.length; exampleIndex++) {
+        //for statement to check for id repeats
+        for (let h = 0; h < employees.length; h++) {
+        //if statement for each employee in array
+        if(exampleEmployees[exampleIndex].idNumber==employees[h].idNumber){
+            alert('Error Employee ID numbers already logged.');
+            return 'Error'
+        }//end if  
+    }//end for
+        employees.push(exampleEmployees[exampleIndex]);
+        //create table row for newEmployee
+        $("#employee-information-table").append('<tr id="'+exampleEmployees[exampleIndex].idNumber+'"></tr>')
+        $("#"+exampleEmployees[exampleIndex].idNumber).append('<td>'+exampleEmployees[exampleIndex].firstName+'</td>');
+        $("#"+exampleEmployees[exampleIndex].idNumber).append('<td>'+exampleEmployees[exampleIndex].lastName+'</td>');
+        $("#"+exampleEmployees[exampleIndex].idNumber).append('<td>'+exampleEmployees[exampleIndex].idNumber+'</td>');
+        $("#"+exampleEmployees[exampleIndex].idNumber).append('<td>'+exampleEmployees[exampleIndex].jobTitle+'</td>');
+        $("#"+exampleEmployees[exampleIndex].idNumber).append('<td>'+exampleEmployees[exampleIndex].annualSalary+'</td>');
+        $("#"+exampleEmployees[exampleIndex].idNumber).append('<td><button class="delete-employee">Delete Employee</button></td>');
+        //Add salary to grossMonthlyExpense and grossAnnualExpense
+        grossMonthlyExpense += exampleEmployees[exampleIndex].monthlySalary;
+        grossAnnualExpense += exampleEmployees[exampleIndex].annualSalary;
+        //Change #monthly-expense value in html
+    }
+    $("#annual-expense").text('$'+grossMonthlyExpense);
+    $("#monthly-expense").text('$'+grossAnnualExpense);
+    readyNow();
+}
+
+//submit button for entry form
 function submitForm () {
     console.log('submitForm()');
-    //Switch to Labor Expense Page
-    laborExpenseButton();
     //pull in employee-form inputs to variables
     firstName=$("#first-name").val();
     lastName=$("#last-name").val();
@@ -70,9 +126,39 @@ function submitForm () {
     for (let i = 0; i < employees.length; i++) {
         //if statement for each employee in array
         if(idNumber==employees[i].idNumber){
+            alert('Error Employee ID number is already inuse.');
             return 'Error'
         }//end if  
     }//end for
+    //check that all fields were filled out
+    if(!$("#first-name").val()){
+        alert('Error First Name Field is blank')
+        return 'Error'
+    }
+    if(!$("#last-name").val()){
+        alert('Error Last Name Field is blank')
+        return 'Error'
+    }
+    if(!$("#id-number").val()){
+        alert('Error ID Number Field is blank')
+        return 'Error'
+    }
+    if(!$("#job-title").val()){
+        alert('Error Job Title Field is blank')
+        return 'Error'
+    }
+    if(!$("#annual-salary").val()){
+        alert('Error Annual Salary Field is blank')
+        return 'Error'
+    }
+    if($("#id-number").val()<10000){
+        alert('Error ID Number must be greater than 10000');
+        return 'Error'
+    }
+    if($("#id-number").val()>1000000){
+        alert('Error ID Number must be less than 1000000');
+        return 'Error'
+    }
     //create new employee class object using the above variables
     newEmployee= new employee(firstName,lastName,idNumber,jobTitle,annualSalary);
     //add newEmployee object to end of employees array
@@ -90,8 +176,14 @@ function submitForm () {
     grossMonthlyExpense += newEmployee.monthlySalary;
     grossAnnualExpense += newEmployee.annualSalary;
     //Change #monthly-expense value in html
+    $("#annual-expense").text('$'+grossMonthlyExpense)
     $("#monthly-expense").text('$'+grossMonthlyExpense)
+    //Switch to Labor Expense Page
+    laborExpenseButton();
+    //Call readyNow Otherwise my delete buttons do not work
     readyNow()
+    //clears values from entry form
+    clearForm()
 };//end submitForm Function
 
 function deleteEmployee (){
@@ -105,7 +197,8 @@ function deleteEmployee (){
             grossMonthlyExpense -= employees[index].monthlySalary;
             grossAnnualExpense -= employees[index].annualSalary;
             //Change #monthly-expense and #annual-expense value in html
-            $("#monthly-expense").text('$'+grossMonthlyExpense)
+            $("#annual-expense").text('$'+grossAnnualExpense);
+            $("#monthly-expense").text('$'+grossMonthlyExpense);
             //splice employee from employees array
             employees.splice(index,1);
         };//end if
@@ -130,4 +223,26 @@ function laborExpenseButton () {
     $("#employee-form").hide();
     $("#home").hide()
     $("#labor-expense-information").show();
+}
+
+function generateRandomID () {
+    //create a random number
+    var testRandomNumber = Math.floor(Math.random()*80000)+20000
+    console.log(testRandomNumber);
+    //test randomNumber against existing ID's to make sure it doesn't match
+    for (let randomIndex = 0; randomIndex < employees.length; randomIndex++) {
+        if(employees[randomIndex].idNumber==testRandomNumber){
+            return generateRandomID();
+        };//end if   
+    };//end for
+    //place set randomnumber into Input field
+    $('#id-number').val(testRandomNumber);
+};//end generateRandomID function
+
+function clearForm () {
+    $("#first-name").val(null);
+    $("#last-name").val(null);
+    $("#id-number").val(null);
+    $("#job-title").val(null);
+    $("#annual-salary").val(null);
 }
