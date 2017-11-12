@@ -4,18 +4,23 @@ header {
     left: 0;
     right: 0;
     height: 100px;
+    background-color: grey;
 }
 #Branding-Image {
     float: left;
     height: 64px;
+    margin: 10px;
 }
 
 h1 {
+    margin-top: 20px;
+    margin-bottom: 15px;
     padding-left: 10px;
     float: left;
+    font-family: 'Adamina', serif;
 }
 
-ul {
+#top-menu {
     clear: both;
     background-color: black;
     list-style-type: none;
@@ -25,7 +30,7 @@ ul {
     overflow: hidden;
     background-color: black;
     cursor: pointer;
-    padding-left: 33%;
+    padding-left: 5%;
 }
 li {
     
@@ -50,7 +55,56 @@ li:active{
 
 main{
     margin-top: 150px;
+    margin-bottom: 150px;
 }
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(103, 136, 94);
+    color: white;
+
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+.gross-expense{
+    width: 150px;
+}
+
+#bottom-menu{
+    background-color: black;
+    float: right;
+    list-style-type: none;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+    cursor: pointer;
+    padding-right: 5%;
+}
+
+.Bottom-Menu-Button {
+    display: table-cell;
+    vertical-align: middle;
+    float: right;
+   
+}
+
+#created-by{
+    clear: both;
+}
+
 
 footer {
     position: fixed;
@@ -58,4 +112,5 @@ footer {
     left: 0;
     right: 0;
     height: 100px;
+    background-color: grey;
  }

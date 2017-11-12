@@ -58,6 +58,8 @@ var grossAnnualExpense=0;
 
 function submitForm () {
     console.log('submitForm()');
+    //Switch to Labor Expense Page
+    laborExpenseButton();
     //pull in employee-form inputs to variables
     firstName=$("#first-name").val();
     lastName=$("#last-name").val();

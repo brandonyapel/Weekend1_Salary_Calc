@@ -8,6 +8,7 @@
     <script src="jquery.min.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Adamina|Andada" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -18,8 +19,7 @@
                     Yapel Accounting Solutions
                 </h1>
             </div>
-            <br>
-            <ul>
+            <ul id="top-menu">
                 <li>
                     <div id="home-menubutton" class="Menu-Button">
                     Home
@@ -27,7 +27,7 @@
                 </li>
                 <li>
                     <div id="employee-entry-menubutton" class="Menu-Button">
-                        Employee Entry Form
+                    Employee Entry Form
                     </div>
                 </li>
                 <li>
@@ -53,33 +53,33 @@
                 </tr>
                 <tr>
                     <td>First Name:</td>
-                    <td><input type="text" id="first-name"></td>
+                    <td><input type="text" id="first-name" tabindex="1"></td>
                 </tr>
                 <tr>
                     <td>Last Name:</td>
-                    <td><input type="text" id="last-name"></td>
+                    <td><input type="text" id="last-name" tabindex="2"></td>
                 </tr>
                 <tr>
                     <td>ID Number Name:</td>
-                    <td><input type="number" id="id-number"></td>
+                    <td><input type="number" id="id-number" tabindex="3"></td>
                     <td><button id="generate-random-id">Generate Random ID</button></td>
                 </tr>
                 <tr>
                     <td>Job Title:</td>
-                    <td><input type="text" id="job-title"></td>
+                    <td><input type="text" id="job-title" tabindex="4"></td>
                 </tr>
                 <tr>
                     <td>Annual Salary:</td>
-                    <td><input type="number" id="annual-salary"></td>
+                    <td><input type="number" id="annual-salary" tabindex="5"></td>
                 </tr>
             </table>
-            <button id="submit-form">submit form</button>
-            <button id="clear-form">clear form</button>
+            <button id="submit-form" tabindex="6">submit form</button>
+            <button id="clear-form" tabindex="7">clear form</button>
         </div>
         <br>
         <div id="labor-expense-information">
                 <div id="monthly-expense-information">
-                        <table>
+                        <table class="gross-expense">
                             <tr>
                                 <th>Gross Monthly Expense: </th>
                             </tr>
@@ -89,7 +89,7 @@
                         </table>
                     </div>  
                     <div id="annual-expense-information">
-                        <table>
+                        <table class="gross-expense">
                             <tr>
                                 <th>Gross Annual Expense: </th>
                             </tr>
@@ -118,35 +118,34 @@
         
     </main>
     <footer>
-        <ul>
-            <li>
-                <div class="Menu-Button">
+        <ul id='bottom-menu'>
+            <li class="Bottom-Menu-Button Menu-Button">
+                <div  >
                     Help     
                 </div>
             </li>
-            <li>
-                <div class="Menu-Button">
+            <li class="Bottom-Menu-Button Menu-Button">
+                <div >
                     Privacy Policy
                 </div>
             </li>
-            <li>
-                <div class="Menu-Button">
+            <li class="Bottom-Menu-Button Menu-Button">
+                <div >
                     Terms of Use
                 </div>
             </li>
-            <li>
-                <div class="Menu-Button">
+            <li class="Bottom-Menu-Button Menu-Button">
+                <div >
                     About Us
                 </div>
             </li>
-            <li>
-                <div class="Menu-Button">
+            <li class="Bottom-Menu-Button Menu-Button" >
+                <div>
                 Contact Us
                 </div>
             </li>
         </ul>
-        <p>Yappletree Solutions a Brandon Yapel business</p>
-
+        <p id="created-by">Created by Brandon Yapel</p>
 
     </footer>  
 </body>
