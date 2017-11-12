@@ -4,16 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Employee Database</title>
     <script src="jquery.min.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
+        <div>
+            <div>
+                <img id="Branding-Image" src="SonofMan.jpg" width:"65" height:"90" alt="Brandon Yapels">
+                <h1>
+                    Yapel Accounting Solutions
+                </h1>
+            </div>
+            <br>
+            <ul>
+                <li>
+                    <div id="home-menubutton" class="Menu-Button">
+                    Home
+                    </div>
+                </li>
+                <li>
+                    <div id="employee-entry-menubutton" class="Menu-Button">
+                        Employee Entry Form
+                    </div>
+                </li>
+                <li>
+                    <div id="labor-expense-menubutton" class="Menu-Button">
+                        Labor Expenses
+                    </div>
+                </li>
+            </ul>
+        </div>
 
     </header>
     <main>
+        <div id="home">
+            <h3>
+                Welcome to Yapel Accounting Solutions
+            </h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde reiciendis odit beatae atque quod libero, explicabo ducimus alias itaque, praesentium temporibus blanditiis, deleniti animi laborum eum velit quis enim. Architecto.</p>
+        </div>
         <div id="employee-form">
             <table>
                 <tr>
@@ -44,8 +76,28 @@
             <button id="submit-form">submit form</button>
             <button id="clear-form">clear form</button>
         </div>
-
-        <div id="Employee Information">
+        <br>
+        <div id="labor-expense-information">
+                <div id="monthly-expense-information">
+                        <table>
+                            <tr>
+                                <th>Gross Monthly Expense: </th>
+                            </tr>
+                            <tr>
+                                <td id="monthly-expense">$0</td>     
+                             </tr>
+                        </table>
+                    </div>  
+                    <div id="annual-expense-information">
+                        <table>
+                            <tr>
+                                <th>Gross Annual Expense: </th>
+                            </tr>
+                            <tr>
+                                <td id="annual-expense">$0</td>     
+                            </tr>
+                        </table>
+                    </div>
             <table id = "employee-information-table">
                 <tr id="employee-information-table-header">
                     <th>First Name</th>
@@ -53,22 +105,48 @@
                     <th>ID Number</th>
                     <th>Job Title</th>
                     <th>Annual Salary</th>
+                    <th>Delete Employee</th>
                 </tr>
                 <!-- <tr>
-                    <tr>Brandon</tr>
-                    <tr>Yapel</tr>
-                    <tr>12345</tr>
-                    <tr>Student</tr>
-                    <tr>0</tr>
+                    <td>Brandon</td>
+                    <td>Yapel</td>
+                    <td>12345</td>
+                    <td>Student</td>
+                    <td>0</td>
                 </tr> -->
             </table>
-        </div>
-        <div id="monthly-expense-information">
-            <p>Gross Monthly Expense: </p>
-            <p id="monthly-expense">$0</p>
-        </div>
+        
     </main>
     <footer>
+        <ul>
+            <li>
+                <div class="Menu-Button">
+                    Help     
+                </div>
+            </li>
+            <li>
+                <div class="Menu-Button">
+                    Privacy Policy
+                </div>
+            </li>
+            <li>
+                <div class="Menu-Button">
+                    Terms of Use
+                </div>
+            </li>
+            <li>
+                <div class="Menu-Button">
+                    About Us
+                </div>
+            </li>
+            <li>
+                <div class="Menu-Button">
+                Contact Us
+                </div>
+            </li>
+        </ul>
+        <p>Yappletree Solutions a Brandon Yapel business</p>
+
 
     </footer>  
 </body>

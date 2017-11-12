@@ -4,9 +4,13 @@ $(document).ready(readyNow);
 
 function readyNow () {
     console.log('JQuery has been loaded')
+    homeButton()
     //event listeners
-    $("#submit-form").on('click',submitForm);//end submit-form event listener
-    $(".delete-employee").on('click',deleteEmployee)
+    $("#submit-form").on('click',submitForm);
+    $(".delete-employee").on('click',deleteEmployee);
+    $("#home-menubutton").on('click',homeButton);
+    $("#employee-entry-menubutton").on('click',employeeEntryFormButton)
+    $("#labor-expense-menubutton").on('click',laborExpenseButton)
 }//end readyNow
  
 
@@ -50,6 +54,7 @@ var idNumber;
 var jobTitle;
 var annualSalary;
 var grossMonthlyExpense=0;
+var grossAnnualExpense=0;
 
 function submitForm () {
     console.log('submitForm()');
@@ -64,8 +69,7 @@ function submitForm () {
         //if statement for each employee in array
         if(idNumber==employees[i].idNumber){
             return 'Error'
-        }//end if
-        
+        }//end if  
     }//end for
     //create new employee class object using the above variables
     newEmployee= new employee(firstName,lastName,idNumber,jobTitle,annualSalary);
@@ -80,8 +84,9 @@ function submitForm () {
     $("#"+idNumber).append('<td>'+jobTitle+'</td>');
     $("#"+idNumber).append('<td>'+annualSalary+'</td>');
     $("#"+idNumber).append('<td><button class="delete-employee">Delete Employee</button></td>');
-    //Add salary to grossMonthlyExpense
+    //Add salary to grossMonthlyExpense and grossAnnualExpense
     grossMonthlyExpense += newEmployee.monthlySalary;
+    grossAnnualExpense += newEmployee.annualSalary;
     //Change #monthly-expense value in html
     $("#monthly-expense").text('$'+grossMonthlyExpense)
     readyNow()
@@ -94,9 +99,10 @@ function deleteEmployee (){
     //for loop to delete employee from array
     for (let index = 0; index < employees.length; index++) {
         if (employees[index].idNumber==id){
-            //subtract salary from grossMonthlyExpense
+            //subtract salary from grossMonthlyExpense and grossAnnualExpense
             grossMonthlyExpense -= employees[index].monthlySalary;
-            //Change #monthly-expense value in html
+            grossAnnualExpense -= employees[index].annualSalary;
+            //Change #monthly-expense and #annual-expense value in html
             $("#monthly-expense").text('$'+grossMonthlyExpense)
             //splice employee from employees array
             employees.splice(index,1);
@@ -106,4 +112,20 @@ function deleteEmployee (){
     $('#'+id).remove();
 };//end deleteEmployee Function
 
+function homeButton (){
+    $("#employee-form").hide();
+    $("#labor-expense-information").hide();
+    $("#home").show();
+};
 
+function employeeEntryFormButton (){
+    $("#home").hide()
+    $("#labor-expense-information").hide();
+    $("#employee-form").show();
+};
+
+function laborExpenseButton () {
+    $("#employee-form").hide();
+    $("#home").hide()
+    $("#labor-expense-information").show();
+}
