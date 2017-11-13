@@ -157,11 +157,11 @@ function submitForm () {
         return 'Error';
     }
     //pull in employee-form inputs to variables
-    firstName=$("#first-name").val();
+    firstName=$("#first-name").val(); 
     lastName=$("#last-name").val();
     idNumber=$("#id-number").val();
     jobTitle=$("#job-title").val();
-    annualSalary=$("#annual-salary").val();
+    annualSalary=Number($("#annual-salary").val()); 
     //for statement to check for id repeats
     for (let i = 0; i < employees.length; i++) {
         //if statement for each employee in array
