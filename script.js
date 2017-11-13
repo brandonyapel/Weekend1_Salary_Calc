@@ -3,6 +3,7 @@ console.log('js');
 
 $(document).ready(readyNow);
 $(document).ready(homeButton);
+
 function readyNow () {
     console.log('JQuery has been loaded')
     //event listeners
@@ -86,14 +87,22 @@ var exampleEmployees = [Trump,Pence,Ryan,Hatch,Tillerson,Mnuchin,Mattis,Sessions
 //add exampleEmployees to employees array
 function addExampleEmployees () {
     for (let exampleIndex = 0; exampleIndex < exampleEmployees.length; exampleIndex++) {
+        firstName=$("#first-name").val();
+        lastName=$("#last-name").val();
+        idNumber=$("#id-number").val();
+        jobTitle=$("#job-title").val();
+        annualSalary=$("#annual-salary").val();
         //for statement to check for id repeats
         for (let h = 0; h < employees.length; h++) {
-        //if statement for each employee in array
-        if(exampleEmployees[exampleIndex].idNumber==employees[h].idNumber){
-            alert('Error Employee ID numbers already logged.');
-            return 'Error'
-        }//end if  
-    }//end for
+            //if statement for each employee in array
+            if (employees.length > 0){
+                if(exampleEmployees[exampleIndex].idNumber==employees[h].idNumber){
+                    confirm('Error Employees on this list are already present in file cannot add.')
+                    console.log('error for id:'+exampleEmployees[exampleIndex].idNumber,employees[h].idNumber);
+                    return 'Error'
+                }//end if  
+            }//ened not 0 if
+        }//end child for
         employees.push(exampleEmployees[exampleIndex]);
         //create table row for newEmployee
         $("#employee-information-table").append('<tr id="'+exampleEmployees[exampleIndex].idNumber+'"></tr>')
@@ -106,16 +115,47 @@ function addExampleEmployees () {
         //Add salary to grossMonthlyExpense and grossAnnualExpense
         grossMonthlyExpense += exampleEmployees[exampleIndex].monthlySalary;
         grossAnnualExpense += exampleEmployees[exampleIndex].annualSalary;
+    }//end parent for
         //Change #monthly-expense value in html
-    }
     $("#annual-expense").text('$'+grossMonthlyExpense);
     $("#monthly-expense").text('$'+grossAnnualExpense);
-    readyNow();
-}
+    //call event listener otherwise delete buttons do not work. Tried readyNow but it created an infinite loop
+    $(".delete-employee").on('click',deleteEmployee);
+    return 'sucess';
+};
 
 //submit button for entry form
 function submitForm () {
     console.log('submitForm()');
+    //check that all fields were filled out
+    if(!$("#first-name").val()){
+        confirm('Error First Name Field is blank');
+        return 'Error';
+    };
+    if(!$("#last-name").val()){
+        confirm('Error Last Name Field is blank');
+        return 'Error';
+    };
+    if(!$("#id-number").val()){
+        confirm('Error ID Number Field is blank');
+        return 'Error';
+    };
+    if(!$("#job-title").val()){
+        confirm('Error Job Title Field is blank');
+        return 'Error';
+    };
+    if(!$("#annual-salary").val()){
+        confirm('Error Annual Salary Field is blank');
+        return 'Error';
+    };
+    if($("#id-number").val()<10000){
+        confirm('Error ID Number must be greater than 10000');
+        return 'Error';
+    };
+    if($("#id-number").val()>1000000){
+        confirm('Error ID Number must be less than 1000000');
+        return 'Error';
+    }
     //pull in employee-form inputs to variables
     firstName=$("#first-name").val();
     lastName=$("#last-name").val();
@@ -126,39 +166,11 @@ function submitForm () {
     for (let i = 0; i < employees.length; i++) {
         //if statement for each employee in array
         if(idNumber==employees[i].idNumber){
-            alert('Error Employee ID number is already inuse.');
-            return 'Error'
-        }//end if  
-    }//end for
-    //check that all fields were filled out
-    if(!$("#first-name").val()){
-        alert('Error First Name Field is blank')
-        return 'Error'
-    }
-    if(!$("#last-name").val()){
-        alert('Error Last Name Field is blank')
-        return 'Error'
-    }
-    if(!$("#id-number").val()){
-        alert('Error ID Number Field is blank')
-        return 'Error'
-    }
-    if(!$("#job-title").val()){
-        alert('Error Job Title Field is blank')
-        return 'Error'
-    }
-    if(!$("#annual-salary").val()){
-        alert('Error Annual Salary Field is blank')
-        return 'Error'
-    }
-    if($("#id-number").val()<10000){
-        alert('Error ID Number must be greater than 10000');
-        return 'Error'
-    }
-    if($("#id-number").val()>1000000){
-        alert('Error ID Number must be less than 1000000');
-        return 'Error'
-    }
+            confirm('Error Employee ID number is already inuse.');
+            return Error;
+        };//end if  
+    };//end for
+    
     //create new employee class object using the above variables
     newEmployee= new employee(firstName,lastName,idNumber,jobTitle,annualSalary);
     //add newEmployee object to end of employees array
@@ -180,8 +192,8 @@ function submitForm () {
     $("#monthly-expense").text('$'+grossMonthlyExpense)
     //Switch to Labor Expense Page
     laborExpenseButton();
-    //Call readyNow Otherwise my delete buttons do not work
-    readyNow()
+    //Call eventlistener Otherwise my delete buttons do not work
+    $(".delete-employee").on('click',deleteEmployee);
     //clears values from entry form
     clearForm()
 };//end submitForm Function
@@ -240,9 +252,9 @@ function generateRandomID () {
 };//end generateRandomID function
 
 function clearForm () {
-    $("#first-name").val(null);
-    $("#last-name").val(null);
-    $("#id-number").val(null);
-    $("#job-title").val(null);
-    $("#annual-salary").val(null);
+    $("#first-name").val('');
+    $("#last-name").val('');
+    $("#id-number").val('');
+    $("#job-title").val('');
+    $("#annual-salary").val('');
 }

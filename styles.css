@@ -18,6 +18,7 @@ h1 {
     padding-left: 10px;
     float: left;
     font-family: 'Adamina', serif;
+    font-size: 150%
 }
 
 #top-menu {
@@ -30,15 +31,16 @@ h1 {
     overflow: hidden;
     background-color: black;
     cursor: pointer;
-    padding-left: 5%;
 }
 li {
-    
+    font-size: 100%;
     float: left;
     display: block;
     color: white;
     text-align: center;
-    padding: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    width:31%;
     text-decoration: none;
     border-right-style: solid;
     border-left-style: solid;
@@ -84,6 +86,7 @@ tr:hover {background-color: #ddd;}
 
 .gross-expense{
     width: 150px;
+    margin-left: 10%;
 }
 
 #employee-information-table{
@@ -101,6 +104,7 @@ tr:hover {background-color: #ddd;}
 
 #add-example-employees{
     float: left;
+    margin-left: 5%;
 }
 
 #bottom-menu{
@@ -108,20 +112,13 @@ tr:hover {background-color: #ddd;}
     float: right;
     list-style-type: none;
     text-align: center;
+    height: 16px;
     width: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: black;
     cursor: pointer;
-    padding-right: 5%;
-}
-
-.Bottom-Menu-Button {
-    display: table-cell;
-    vertical-align: middle;
-    float: right;
-   
 }
 
 #created-by{
