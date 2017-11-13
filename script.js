@@ -188,7 +188,7 @@ function submitForm () {
     grossMonthlyExpense += newEmployee.monthlySalary;
     grossAnnualExpense += newEmployee.annualSalary;
     //Change #monthly-expense value in html
-    $("#annual-expense").text('$'+grossMonthlyExpense)
+    $("#annual-expense").text('$'+grossAnnualExpense)
     $("#monthly-expense").text('$'+grossMonthlyExpense)
     //Switch to Labor Expense Page
     laborExpenseButton();
