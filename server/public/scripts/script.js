@@ -8,7 +8,7 @@ function readyNow () {
     console.log('JQuery has been loaded')
     //event listeners
     $("#submit-form").on('click',submitForm);
-    $(".delete-employee").on('click',deleteEmployee);
+    $(document).on('click','.delete-employee',deleteEmployee);
     $("#home-menubutton").on('click',homeButton);
     $("#employee-entry-menubutton").on('click',employeeEntryFormButton);
     $("#labor-expense-menubutton").on('click',laborExpenseButton);
@@ -120,7 +120,6 @@ function addExampleEmployees () {
     $("#annual-expense").text('$'+grossMonthlyExpense);
     $("#monthly-expense").text('$'+grossAnnualExpense);
     //call event listener otherwise delete buttons do not work. Tried readyNow but it created an infinite loop
-    $(".delete-employee").on('click',deleteEmployee);
     return 'sucess';
 };
 
@@ -192,8 +191,6 @@ function submitForm () {
     $("#monthly-expense").text('$'+grossMonthlyExpense)
     //Switch to Labor Expense Page
     laborExpenseButton();
-    //Call eventlistener Otherwise my delete buttons do not work
-    $(".delete-employee").on('click',deleteEmployee);
     //clears values from entry form
     clearForm()
 };//end submitForm Function
